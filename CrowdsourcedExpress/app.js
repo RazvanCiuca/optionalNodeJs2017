@@ -11,16 +11,11 @@ app.use(bodyParser.json());
 const router = express.Router();
 
 router.get('/beers', beersController.getBeers);
-router.post('/beers', beersController.addBeer);
 router.get('/beers/:id([0-9]+)', beersController.getBeer);
-//router.get('/beers/:id()', beersController.getBeer);
-//
-//Vreau sa pot sa:
-//- adaug o bere
-//- sterg o bere
-//- vad o bere dupa id sau nume
-//- updatez detalii despre o bere
-
+router.get('/beers/:id([^0-9]+)', beersController.getBeer);
+router.post('/beers', beersController.addBeer);
+router.put('/beers/:id', beersController.updateBeer);
+router.delete('/beers/:id', beersController.removeBeer);
 
 
 app.use('/', router);
