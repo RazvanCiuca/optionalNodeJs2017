@@ -4,18 +4,18 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
-
+const debug = require('debug')('mongoose:server');
+const http = require('http');
 const index = require('./routes/index');
-const users = require('./routes/users');
-
+const search = require('./routes/search');
 const mongoose = require('mongoose');
+const swig = require('swig');
+
+
 mongoose.connect('mongodb://nooblet:Nooblet@ds149865.mlab.com:49865/optional');
 const app = express();
 
-
-
-const swig = require('swig');
+app.set('port', 3005);
 app.engine('html', swig.renderFile);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/search', search);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,6 +48,14 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+const server = http.createServer(app);
+
+
+server.listen(3005);
+server.on('listening', () => {
+  console.log('Listening on port ', 3005);
 });
 
 module.exports = app;

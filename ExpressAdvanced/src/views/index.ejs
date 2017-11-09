@@ -1,44 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta charset="utf-8">
-		<title>Advanced Express</title>
-        <base href="/" target="">
-		<meta name="generator" content="Bootply" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<link href="css/bootstrap.min.css" rel="stylesheet">
-		<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<link href="css/styles.css" rel="stylesheet">
+        <% include partials/head.ejs %>
 	</head>
 	<body>
 <div class="wrapper">
     <div class="box">
         <div class="row">
             <!-- sidebar -->
-            <div class="column col-sm-3" id="sidebar">
-                <a class="logo" href="#">B</a>
-                <ul class="nav">
-                    <li class="active"><a href="#Featured">Featured</a>
-                    </li>
-                    <li><a href="#Wishlist">Stories</a>
-                    </li>
-                </ul>
-                <ul class="nav hidden-xs" id="sidebar-footer">
-                    <li>
-                      <a href="http://www.bootply.com"><h3>Basis</h3>Made with <i class="glyphicon glyphicon-heart-empty"></i> by Bootply</a>
-                    </li>
-                </ul>
-            </div>
+            <% include partials/sidebar.ejs %>
             <!-- /sidebar -->
           
             <!-- main -->
             <div class="column col-sm-9" id="main">
                 <div class="padding">
                     <div class="full col-sm-9">
-                      
+
+                        <% if(user) {%>
+                        Logged in as: <%= user.email %>
+                        <%}%>
+
+
                         <!-- content -->
                         <% for(i=0;i<sections.length;i++) {%>
                             <div class="col-sm-12" id="<%= sections[i].title %>">
@@ -50,7 +32,7 @@
                             <% for(j=0;j<sections[i].items.length;j++) {%>
                                 <div class="row">
                                     <div class="col-sm-10">
-                                        <h3><a href="/articles/<%= sections[i].items[j].id %>"><%= sections[i].items[j].title %></a></h3>
+                                        <h3><%- link_to(sections[i].items[j].title, '/articles/' + sections[i].items[j].id) %></h3>
                                         <h4><span class="label label-default"><%= sections[i].items[j].source %></span></h4><h4>
                                             <small class="text-muted"><%= sections[i].items[j].timestamp %> • <a href="#" class="text-muted">Read More</a></small>
                                         </h4>
@@ -125,8 +107,6 @@
         </div>
     </div>
 </div>
-	<!-- script references -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
+	<% include partials/footer.ejs %>
 	</body>
 </html>

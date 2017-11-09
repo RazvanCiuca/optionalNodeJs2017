@@ -1,15 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const _ = require('lodash');
+const helpers = require('express-helpers');
+const usersCtrl = require('./src/controllers/user.controller.js');
 
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(express.static('src/views'));
+//app.use(express.static('src/views'));
 app.set('views', './src/views');
-// app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
+helpers(app);
 
 const port = 3000;
 
@@ -67,14 +70,29 @@ const articleRouter = express.Router();
 
 
 router.get('/', function(req, res) {
-    res.render('index', {sections: sections});
+    res.render('index', {sections: sections, user: usersCtrl.getCurrentUser()});
 });
+
+router.get('/sign-up', function(req, res) {
+    res.render('signup');
+});
+
+router.get('/users', function(req, res) {
+    res.render('users', {users: usersCtrl.getUsers()});
+});
+
+router.post('/users/', usersCtrl.createUser);
+router.post('/users/login', usersCtrl.login);
+
+
 
 articleRouter.route('/:id')
     .get(function(req, res) {
         const article = _.find(articles, {id: parseInt(req.params.id, 10)});
         res.render('article', {article: article});
     });
+
+
 
 
 app.use('/', router);

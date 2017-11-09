@@ -32,7 +32,7 @@ class Square extends Rectangle {
 let mySquare = new Square(5);
 let myRectangle = new Rectangle(4, 6);
 
-console.log('My square\'s area: ', mySquare.getArea());
+//console.log('My square\'s area: ', mySquare.getArea());
 // console.log('My rectangle\'s area: ', myRectangle.getArea());
-// Rectangle.whatAmI();
+//Rectangle.whatAmI();
 // mySquare.whatAmIReally();

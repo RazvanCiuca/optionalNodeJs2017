@@ -4,7 +4,7 @@ const myAdder = (x, y= 2) => {
 };
 
 let a = 3;
-console.log(myAdder(a));
+//console.log(myAdder(a));
 
 const myBetterAdder = (x, ...otherArgs) => {
     otherArgs.forEach((arg) => {
@@ -13,9 +13,10 @@ const myBetterAdder = (x, ...otherArgs) => {
     return x;
 };
 
-// console.log(myBetterAdder(1, 2, 3, 4, 5));
+ //console.log(myBetterAdder(1, 2, 3, 4, 5));
 
 const bunchaRandomArguments = [1, 2, 3, 4, 5, 6];
-// console.log(myBetterAdder(...bunchaRandomArguments));
+ //console.log(myBetterAdder(...bunchaRandomArguments));
 
 //TODO talk about additions to core libraries (includes, repeat, hypot, trig, Array.of, fill, find, destructuring
+console.log(Math.hypot(3,4));

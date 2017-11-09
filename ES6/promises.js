@@ -18,7 +18,7 @@ const startCountdownTillNewYear = function(step, id) {
       });
 };
 
-// startCountdownTillNewYear(10, 'First counter');
+ //startCountdownTillNewYear(10, 'First counter');
 
 const fakeHttpRequest = function() {
     const timeToLive = Math.floor(Math.random() * 10);
@@ -34,7 +34,7 @@ Promise.all([
     fakeHttpRequest(),
     fakeHttpRequest()
 ]).then((success) => {
-    // console.log(success);
+     //console.log(success);
     //TODO for students: display the request which took the longest to complete
 });
 
@@ -43,5 +43,5 @@ Promise.race([
     fakeHttpRequest(),
     fakeHttpRequest()
 ]).then((success) => {
-    // console.log(success);
+     console.log(success);
 });

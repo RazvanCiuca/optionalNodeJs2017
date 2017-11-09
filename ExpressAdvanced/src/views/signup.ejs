@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include partials/head.ejs %>
+</head>
+<body>
+<div class="wrapper">
+    <div class="box">
+        <div class="row">
+            <!-- sidebar -->
+            <% include partials/sidebar.ejs %>
+            <!-- /sidebar -->
+
+            <!-- main -->
+            <div class="column col-sm-9" id="main">
+                <div class="padding">
+                    <div class="full col-sm-9">
+
+                        <!-- content -->
+                        <h1>Login</h1>
+                        <form method="POST" action="/users/login">
+                            <table>
+                                <tr>
+                                    <td>Email</td>
+                                    <td><input type="email" name="email" ></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" name="password" ></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input type="submit" value="Login" ></td>
+                                </tr>
+                            </table>
+                        </form>
+
+                        <h1>Don't have an account? Sign up!</h1>
+                        <form method="POST" action="/users/">
+                            <table>
+                                <tr>
+                                    <td>Email</td>
+                                    <td><input type="email" name="email" ></td>
+                                </tr>
+                                <tr>
+                                    <td>Password</td>
+                                    <td><input type="password" name="password" ></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input type="submit" value="SignUp" ></td>
+                                </tr>
+                            </table>
+                        </form>
+
+                    </div><!-- /col-9 -->
+                </div><!-- /padding -->
+            </div>
+            <!-- /main -->
+        </div>
+    </div>
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>
